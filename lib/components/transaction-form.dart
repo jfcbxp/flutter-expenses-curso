@@ -47,8 +47,8 @@ class _TransactionFormState extends State<TransactionForm> {
                   onPressed: _submitForm,
                   child: Text('Nova Transacao'),
                   style: ButtonStyle(
-                      backgroundColor:
-                          MaterialStatePropertyAll<Color>(Colors.purple))),
+                      backgroundColor: MaterialStatePropertyAll<Color>(
+                          Theme.of(context).colorScheme.primary))),
             ],
           )
         ]),

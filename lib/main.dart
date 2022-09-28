@@ -13,8 +13,30 @@ class ExpensesApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ThemeData tema = ThemeData();
     return MaterialApp(
       home: MyHomePage(),
+      theme: tema.copyWith(
+        colorScheme: tema.colorScheme.copyWith(
+          primary: Colors.purple,
+          secondary: Colors.amber,
+        ),
+        textTheme: tema.textTheme.copyWith(
+          headline6: TextStyle(
+            fontFamily: 'Roboto',
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+            color: Colors.black,
+          ),
+        ),
+        appBarTheme: AppBarTheme(
+          titleTextStyle: TextStyle(
+            fontFamily: 'Roboto',
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
     );
   }
 }
@@ -27,15 +49,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final _transactions = [
-    Transaction(
-        id: "t1",
-        title: "Novo Tenis de Corrida",
-        value: 310.76,
-        date: DateTime.now()),
-    Transaction(
-        id: "t2", title: "Conta de Luz", value: 500.76, date: DateTime.now()),
-  ];
+  final List<Transaction> _transactions = [];
 
   _openTransactionFormModal(BuildContext context) {
     showModalBottomSheet(
@@ -78,7 +92,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Card(
                 child: Text('Grafico'),
                 elevation: 5,
-                color: Colors.blue,
+                color: Theme.of(context).colorScheme.primary,
               )),
               Column(
                 children: [TransactionList(_transactions)],
@@ -88,6 +102,7 @@ class _MyHomePageState extends State<MyHomePage> {
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         onPressed: () => _openTransactionFormModal(context),
+        backgroundColor: Theme.of(context).colorScheme.primary,
       ),
       floatingActionButtonLocation:
           FloatingActionButtonLocation.miniCenterFloat,
